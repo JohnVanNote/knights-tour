@@ -7,7 +7,7 @@
 # Created on 11/01/11
 #
 
-file = Knights_Tour.py
+file = knights-tour.py
 .SILENT:
 
 # view the code
