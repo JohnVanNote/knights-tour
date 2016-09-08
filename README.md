@@ -9,7 +9,7 @@ Files include:
 For information about the "Knight's tour" problem reference:
 http://en.wikipedia.org/wiki/Knights_tour
 
-Knights_Tour.py will simulated a "Knight's Tour" by creating a blank chess
+knights-tour.py will simulated a "Knight's Tour" by creating a blank chess
 board and randomly moving the knight throughout it. It will either pass or
 fail based on whether or not the knight can touch every tile once without
 repeating. There are three environment variables that the user must enter:
