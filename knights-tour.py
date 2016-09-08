@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# KnightsTour.py
+# knights-tour.py
 #
 # This program will attempt to move a knight on a chess board
 # so that each space is visited exactly once. It will accept the
@@ -23,25 +23,25 @@ import random
 
 def main():
   # Makes sure the user input is the approriate number of variables
-  if len( sys.argv ) != 4:
+  if len(sys.argv) != 4:
     print "ERROR! Number of arguments invalid, 3 arguments needed:"
     print "rows \ncolumns \nattempts"
   
   else:
     # Takes arguments from user, verifies their value
-    KNIGHT_ROWS = int( sys.argv[1] )
-    KNIGHT_COLS = int( sys.argv[2] )
-    KNIGHT_ATTS = int( sys.argv[3] ) 
-    assert( KNIGHT_ROWS > 0 )
-    assert( KNIGHT_COLS > 0 )
-    assert( KNIGHT_ATTS > 0 )     
+    KNIGHT_ROWS = int(sys.argv[1])
+    KNIGHT_COLS = int(sys.argv[2])
+    KNIGHT_ATTS = int(sys.argv[3]) 
+    assert(KNIGHT_ROWS > 0)
+    assert(KNIGHT_COLS > 0)
+    assert(KNIGHT_ATTS > 0)     
     i = 1
     is_success = 0
     cont = 0
 
     while i <= KNIGHT_ATTS and is_success != 1:
       # Creates empty board
-      board = create_brd( KNIGHT_ROWS, KNIGHT_COLS )
+      board = create_brd(KNIGHT_ROWS, KNIGHT_COLS)
       # Special occasion for 1X1 boards
       if KNIGHT_ROWS == 1 and KNIGHT_COLS == 1:
         is_success = 1
@@ -50,7 +50,7 @@ def main():
         row = 0
         column = 0
         move_count = 2
-        tour = tour_brd( row, column, board, move_count, KNIGHT_ROWS,
+        tour = tour_brd(row, column, board, move_count, KNIGHT_ROWS,
 KNIGHT_COLS)
         if tour == 0:
           pass
@@ -63,7 +63,7 @@ KNIGHT_COLS)
 
     if is_success == 0:
       print "FAIL:"
-    prnt_brd( board )
+    prnt_brd(board)
 
   return 0
 
@@ -71,10 +71,10 @@ KNIGHT_COLS)
 # @param x: an integer for number of rows
 # @param y: an integer for number of columns
 # @return: empty (all 0's) list of list except a 1 in the first position
-def create_brd( x, y ):
+def create_brd(x, y):
   brd = list()
-  for j in range( 0, int( x )):
-    brd.append( [0] * y )
+  for j in range(0, int(x)):
+    brd.append([0] * y)
   brd[0][0] = 1
   return brd
 
@@ -85,7 +85,7 @@ def create_brd( x, y ):
 # @param brd: a list of list that is the current board
 # @param mv: the number mv that the function is on
 # @return: a new board with mv in the postion
-def place( x, y, brd, mv ):
+def place(x, y, brd, mv):
   brd[x][y] = mv
   return brd
 
@@ -96,7 +96,7 @@ def place( x, y, brd, mv ):
 # @param max_x: the total rows
 # @param max_y: the total columns
 # @return: all valid moves for the knight
-def check_mvs( x, y, brd, max_x, max_y ):
+def check_mvs(x, y, brd, max_x, max_y):
   val_mvs = []
   prev = []
   all_mvs = [[2,1],[1,2],[-2,1],[-1,2],[2,-1],[1,-2],[-2,-1],[-1,-2]]
@@ -105,9 +105,9 @@ def check_mvs( x, y, brd, max_x, max_y ):
     tmp_y = y 
     tmp_x = tmp_x + mvs[0] 
     tmp_y = tmp_y + mvs[1] 
-    is_val = validate( tmp_x, tmp_y, brd, max_x, max_y ) 
+    is_val = validate(tmp_x, tmp_y, brd, max_x, max_y)
     if is_val == 1:
-      val_mvs.append( [ tmp_x, tmp_y ] )
+      val_mvs.append([tmp_x, tmp_y])
   return val_mvs
 
 # validate: Checks whether or not a knights move is valid
@@ -116,7 +116,7 @@ def check_mvs( x, y, brd, max_x, max_y ):
 # @param max_x: the total rows
 # @param max_y: the total columns
 # @return: 1 if the move is valid. 0 otherwise
-def validate( x, y, brd, max_x, max_y ):
+def validate(x, y, brd, max_x, max_y):
   if x < 0:
     return 0
   elif y < 0:
@@ -138,16 +138,16 @@ def validate( x, y, brd, max_x, max_y ):
 # @param max_x: the total rows
 # @param max_y: the total columns
 # @return: updated board
-def walk_brd( x, y, brd, mv, max_x, max_y ):
-  val_mvs = check_mvs( x, y, brd, max_x, max_y )
+def walk_brd(x, y, brd, mv, max_x, max_y):
+  val_mvs = check_mvs(x, y, brd, max_x, max_y)
   if val_mvs == []:
     return [-1000000, -1, -1]
   else:
-    pick = random.choice( val_mvs ) 
-    new_brd = place( pick[0], pick[1], brd, mv)
+    pick = random.choice(val_mvs)
+    new_brd = place(pick[0], pick[1], brd, mv)
     x = pick[0]
     y = pick[1]
-    return ( new_brd, x, y ) 
+    return (new_brd, x, y)
 
 # tour_brd: Tours an entire board for one attempt, the function is recursive
 # @param x: an integer for the row position of the knight
@@ -156,8 +156,8 @@ def walk_brd( x, y, brd, mv, max_x, max_y ):
 # @param mv: the move that the knight is currently on
 # @param brd_size: the overall board
 # @return: 1 if the tour was successful, 1 if not
-def tour_brd( x, y, brd, mv, max_x, max_y ):
-  ans = walk_brd( x, y, brd, mv, max_x, max_y )
+def tour_brd(x, y, brd, mv, max_x, max_y):
+  ans = walk_brd(x, y, brd, mv, max_x, max_y)
   new_brd = ans[0]
   x = ans[1]
   y = ans[2]
@@ -168,18 +168,18 @@ def tour_brd( x, y, brd, mv, max_x, max_y ):
     return 1
   else:
     mv = mv + 1
-    return tour_brd( x, y, new_brd, mv, max_x, max_y )  
+    return tour_brd(x, y, new_brd, mv, max_x, max_y)  
   
 # prnt_brd: Prints the state of the knights board with the num move on the space
 # @param brd: a list of lists that represents the current knight board
 # @param max_x: the total number of rows in a board
 # no return
-def prnt_brd( brd ):
+def prnt_brd(brd):
   for i in brd:
     for j in i:
       if j == 0:
         j = 'x'
-      print str( j ) + "\t",
+      print str(j) + "\t",
     print "\n"
   return
 
