@@ -3,7 +3,7 @@ John Van Note
 
 Files include:
 - README
-- Knights_Tour.py
+- knights-tour.py
 - makefile
 
 For information about the "Knight's tour" problem reference:
