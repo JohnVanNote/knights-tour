@@ -1,10 +1,4 @@
-John Van Note
-10/31/11
-
-Files include:
-- README
-- knights-tour.py
-- makefile
+# Knight's Tour
 
 For information about the "Knight's tour" problem reference:
 http://en.wikipedia.org/wiki/Knights_tour
@@ -21,4 +15,7 @@ attain a success
 You can execute the program by defining the environmental variables and use
 the make run command.
 
-Ex. KNIGHT_ROWS=5 KNIGHT_COLS=6 KNIGHT_ATTS=10 make run
+Example:
+```
+KNIGHT_ROWS=5 KNIGHT_COLS=6 KNIGHT_ATTS=10 make run
+```
